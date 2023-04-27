@@ -1,0 +1,11 @@
+from sklearn.cluster import AgglomerativeClustering
+from sklearn.datasets import load_iris
+iris=load_iris()
+x=iris.data
+model=AgglomerativeClustering(n_clusters=3,affinity='euclidean', linkage='ward') # with euclidean only ward works
+model.fit_predict(x)
+from scipy.cluster.hierarchy import dendrogram, linkage
+linkage_data = linkage(x, method='ward', metric='euclidean') #‘ward’ minimizes the variance of the clusters being merged.
+                                                             #other values are average,single,complete
+dendrogram(linkage_data)
+plt.show()
